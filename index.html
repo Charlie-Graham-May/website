@@ -1,0 +1,279 @@
+<html lang="en">
+
+<head>
+
+<style>
+body {
+    background: #383a3b;
+    color: #e8e4de;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
+h1 {
+    font-size: 44px;
+    line-height: 26.4px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    padding-bottom: 11px;
+    border-bottom: 5px solid;
+}
+
+#container {
+    position: relative;
+    width: 1060px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+#thumbnails {
+    position: absolute;
+}
+
+@keyframes thumbnail-fading {
+  0%,     32.222%, 100% { opacity: 0; z-index: 0 }
+  1.111%, 31.111%       { opacity: 1; z-index: 1 }
+}
+#thumbnails span {
+    position: absolute;
+    width: 320px;
+    animation-name: thumbnail-fading;
+    animation-duration: 45s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    opacity: 0
+}
+#thumbnails span:nth-child(1) { left: 0px;    animation-delay: -10s;  opacity: 1; }
+#thumbnails span:nth-child(2) { left: 370px;  animation-delay: -5s;  opacity: 1; }
+#thumbnails span:nth-child(3) { left: 740px;  animation-delay: 0s; opacity: 1; }
+#thumbnails span:nth-child(4) { left: 0px;    animation-delay: 5s; }
+#thumbnails span:nth-child(5) { left: 370px;  animation-delay: 10s; }
+#thumbnails span:nth-child(6) { left: 740px;  animation-delay: 15s; }
+#thumbnails span:nth-child(7) { left: 0px;    animation-delay: 20s; }
+#thumbnails span:nth-child(8) { left: 370px;  animation-delay: 25s; }
+#thumbnails span:nth-child(9) { left: 740px;  animation-delay: 30s; }
+
+.thumbnail { width: 320px; height: 464px }
+.fullsize  { display: none }
+
+#top-menu {
+    float: right;
+}
+#top-menu a {
+    text-decoration: none;
+    padding-left: 20px;
+    color: #e8e4de;
+}
+
+/* Unopened fullsize */
+.lightbox {
+  display: none;
+}
+
+/* Opened lightbox */
+.lightbox:target {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2
+}
+
+/* lightbox content */
+.lightbox img, figcaption {
+  position: relative;
+  padding: 1.5em;
+  background-color: #383a3b;
+}
+
+/* Close button */
+.lightbox .close {
+  position: relative;
+  display: block;
+}
+
+.lightbox .close::after {
+  right: -1rem;
+  top: -1rem;
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  display: flex;
+  z-index: 3;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8e4de;
+  border-radius: 50%;
+  color: #383a3b;
+  content: "×";
+  cursor: pointer;
+}
+
+/* lightbox overlay */
+.lightbox .close::before {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0,0,0,.7);
+  content: "";
+  cursor: default;
+}
+
+.text-lightbox figure { width: 800px; border: 1px solid #e8e4de; padding: 10px; background: #383a3b }
+
+button, input, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  width: 100%
+}
+
+input, textarea {
+    margin-bottom: 10px
+}
+
+textarea { height: 100px }
+
+</style>
+
+</head>
+<body>
+
+<div id="fullsizes">
+    <div class="lightbox" id="img1"><figure><a href="#" class="close"></a>
+        <img src="https://placekitten.com/800/600?image=1">
+    </figure></div>
+
+    <div class="lightbox" id="img2"><figure><a href="#" class="close"></a>
+        <img src="https://placekitten.com/800/600?image=2">
+    </figure></div>
+
+    <div class="lightbox" id="img3"><figure><a href="#" class="close"></a>
+        <img src="https://placekitten.com/800/600?image=3">
+    </figure></div>
+
+    <div class="lightbox" id="img4"><figure><a href="#" class="close"></a>
+        <img src="https://placekitten.com/800/600?image=4">
+    </figure></div>
+
+    <div class="lightbox" id="img5"><figure><a href="#" class="close"></a>
+        <img src="https://placekitten.com/800/600?image=5">
+    </figure></div>
+
+    <div class="lightbox" id="img6"><figure><a href="#" class="close"></a>
+        <img src="https://placekitten.com/800/600?image=6">
+    </figure></div>
+
+    <div class="lightbox" id="img7"><figure><a href="#" class="close"></a>
+        <img src="https://placekitten.com/800/600?image=7">
+    </figure></div>
+
+    <div class="lightbox" id="img8"><figure><a href="#" class="close"></a>
+        <img src="https://placekitten.com/800/600?image=8">
+    </figure></div>
+
+    <div class="lightbox" id="img9"><figure><a href="#" class="close"></a>
+        <img src="https://placekitten.com/800/600?image=9">
+    </figure></div>
+</div>
+
+<div class="lightbox text-lightbox" id="about"><figure><a href="#" class="close"></a>
+    <figcaption>
+        <h1>About</h1>
+        <p>Charlie paints and draws in Chippenham, Wiltshire, as well as running Rag and Bone Arts’ Life Drawing and Youth Art sessions and organising arts events in the wider community.</p>
+        <p>He uses a number of different media, including charcoal, oils and Humbrol enamel paints. His work is part painting from the subject, part Impressionism and partly an expressive response to the effect of his synaesthesia (the experience of sensing colours and images when hearing certain types of music).</p>
+        <p>Charlie has been drawing and painting since he was 7; his work is strongly influenced by rural Somerset, where he grew up, as well as the landscapes of Wiltshire, Wales and Cornwall.</p>
+        <p>Charlie donates 10% of his income from these works, variously to Wiltshire Wildlife Trust, Forestry England and the World Wildlife Fund.</p>
+    </figcaption>
+</figure></div>
+
+<div class="lightbox text-lightbox" id="work"><figure><a href="#" class="close"></a>
+    <figcaption>
+        <h1>Work</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </figcaption>
+</figure></div>
+
+<div class="lightbox text-lightbox" id="contact"><figure><a href="#" class="close"></a>
+    <figcaption>
+        <h1>Contact</h1>
+        <form>
+        <input type="text" placeholder="Subject" required>
+        <textarea placeholder="Hey Charlie, I love your site" required></textarea>
+        <button>Contact Charlie</button>
+        </form>
+    </figcaption>
+</figure></div>
+
+<div id="container">
+
+<div id="email">
+</div>
+
+
+<div id="top-menu">
+<a href="#about">About</a>
+<a href="#work">Work</a>
+<a href="#contact">Contact</a>
+</div>
+
+<h1>Charlie Graham-May</h1>
+
+<div id="thumbnails">
+
+<span>
+  <a href="#img1"><img src="https://placekitten.com/320/464?image=1" class="thumbnail"></a>
+  <p>Text for image 1 (who's a cute cat)</p>
+</span>
+
+<span>
+  <a href="#img2"><img src="https://placekitten.com/320/464?image=2" class="thumbnail"></a>
+  <p>Text for image 2 (you're a cute cat)</p>
+</span>
+
+<span>
+  <a href="#img3"><img src="https://placekitten.com/320/464?image=3" class="thumbnail"></a>
+  <p>Text for image 3 (yes, you are)</p>
+</span>
+
+<span>
+  <a href="#img4"><img src="https://placekitten.com/320/464?image=4" class="thumbnail"></a>
+  <p>Text for image 4 (the cutest cat)</p>
+</span>
+
+<span>
+  <a href="#img5"><img src="https://placekitten.com/320/464?image=5" class="thumbnail"></a>
+  <p>Text for image 5 (even cuter)</p>
+</span>
+
+<span>
+  <a href="#img6"><img src="https://placekitten.com/320/464?image=6" class="thumbnail"></a>
+  <p>Text for image 6 (cute whiskers)</p>
+</span>
+
+<span>
+  <a href="#img7"><img src="https://placekitten.com/320/464?image=7" class="thumbnail"></a>
+  <p>Text for image 7 (cute toes)</p>
+</span>
+
+<span>
+  <a href="#img8"><img src="https://placekitten.com/320/464?image=8" class="thumbnail"></a>
+  <p>Text for image 8 (cute tail)</p>
+</span>
+
+<span>
+  <a href="#img9"><img src="https://placekitten.com/320/464?image=9" class="thumbnail"></a>
+  <p>Text for image 9 (cutest purrr)</p>
+</span>
+
+</div>
+
+</div>
+</body>
+</html>
